@@ -1,0 +1,40 @@
+Authorization/Flask (Day 68)
+
+ - Level 1 Authentication
+	-password stored as plain text
+	-password stored in server, not html
+
+-Level 2 Authentication
+	-encryption: scrambled password
+	-need key to unlock
+
+-Level 3 Authentication
+	-hashing!
+	-no need for key
+	-hash function: mathematical equation that makes it almost impossible to go back into a password once encrypted
+	* user enters pw, pw gets hashed and hash compared to previous hashes
+	* hash is always the same (MD5)
+
+-How to Hack A PW
+	-make a hash table, compare hashes
+	-dictionary attack…common words etc.
+
+-Level 4 Authentication
+	*salting- auto generated random set of characters added on top before hash!
+	-bcrypt!!
+		—> stronger hashing algorithm than MD5
+		—> takes much longer to decrypt!
+			* salt rounds- reapplying salt after hash then repeating the process a certain number of times.
+		—> each new round doubles amount of time to decrypt 
+		—> single factor that you can change each year to update the strength of your encryption
+
+Werkzeug Hash Helper
+* WSGI—>Web Server Gateway Interface 
+*Werkzeug—> utility library for WSGI applications
+
+-
+		
+
+
+
+
