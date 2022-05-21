@@ -1,0 +1,22 @@
+Receiving data from forms(FLASK):
+
+-if:
+<form action="{{ url_for('login') }}" method="post">
+    <input type="text" name="email" placeholder="Email" required="required"/>
+
+Then:
+From Flask import request
+email=request.form.get("email")
+
+If:
+class RegisterForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    name = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField("Sign Me Up, MR. MAN!")
+
+Then:
+form = RegisterForm()
+email=form.email.data
+
+
