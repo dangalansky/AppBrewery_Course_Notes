@@ -1,0 +1,14 @@
+Plotly
+* data visualization library
+
+import plotly.express as px
+
+ —> creates pie chart
+	ex)fig = px.pie(labels=ratings.index, values=ratings.values)
+
+*.show() —> displays resulting figure
+
+*.update_traces() —> to configure aspects of the chart you can’t see
+	ex) fig.update_traces(textposition=‘outside’, textinfo=‘percent+label’)
+  
+*px.bar()—> bar chart
