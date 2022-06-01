@@ -1,15 +1,13 @@
-Pandas! / Matplotlib
+Pandas!
 *lesson conducted in python notebook
 
+import statement:
 import pandas as pd
+
+read the data:
 df= pd.read_csv(‘name_of_file.csv’)
 
-df.head(n)
-	* shows top “n” rows of data, default is 5
-
-df.tail(n)
-	* shows bottom “n” rows of data, default is 5
-
+data exploration:
 df.shape
 	* returns # of rows and columns within data frame as tuple
 	*(columns, rows)
@@ -17,28 +15,44 @@ df.shape
 df.columns
 	*returns names of columns as a list within Index()
 
+df.dtypes
+	*returns data types of entries
+
+df.duplicated()
+	*returns true or false denoting existence of duplicate rows
+
+df.head(n)
+	* shows top “n” rows of data, default is 5
+
+df.tail(n)
+	* shows bottom “n” rows of data, default is 5
+
+
 df.describe()
 	*returns count, mean, min, max and other stats on every column
 
-df.dtypes()
-	*returns data types of entries
+df.sample(n)
+	*returns ’n’ number of random rows
 
 df.isna()
 	* returns True where values==None, NA etc.
 
-df.dropna()
-	* removes missing values
-	* clean_df = df.dropna() —> best practice!
-
-df.fillna()
-	* replace NaN values, instead of removing them
-	* like with int 0!
-	ex) df.fillna(0, inplace=True)
-					**inplace infers we are updating a dataframe
-
 df.isna().values.any()
 	* checks entirety of file for NaN values
 	* returns False if None
+
+.nunique()
+	* counts number of distinct elements in specified axis
+	*ex) df[column_name].nunique()
+
+.count()
+	* counts amount of entries in a table
+	* returns an integer value, count of whatever comes before
+
+.value_counts()
+	* returns a series with number of unique values
+	*ex) df.data_column.value_counts()
+
 
 df.[‘column name’]
 	*returns entire column
@@ -64,6 +78,36 @@ df.loc[n]
 	* df[‘column_name’].loc[n] == df[‘column_name’][n]
 		—>would return a single value for ‘column_name’
 
+**Multiple Conditional Search**
+
+1) df.loc[] + bitwise and operator
+
+	ex) international_releases = data.loc[(data.column1 == 0) & (data.column2 !=0)]
+	*parentheses required!*
+
+2) df.query()
+	ex)international_releases = data.query(‘column1 == 0 and column2 !=0’)
+
+
+actions:
+
+df.dropna()
+	* removes missing values
+	* clean_df = df.dropna() —> best practice!
+
+df.fillna()
+	* replace NaN values, instead of removing them
+	* like with int 0!
+	ex) df.fillna(0, inplace=True)
+					**inplace infers we are updating a dataframe
+
+.to_datetime()
+	* converts str to datetime object
+	ex) df.DATE = pd.to_datetime(df.DATE)
+
+.to_numeric
+	*converts to numeric data type
+	ex) df.Column = pd.to_numeric(df.Column)
 
 .insert(n, ‘Column Title’, variable)
 	*creates new column out of variable at position ’n’, with ‘Column title’
@@ -76,17 +120,6 @@ df.loc[n]
 	* creates an object that groups rows by particular category
 	* must apply another function to return something; I.E. .count() or mean()
 
-.nunique()
-	* counts number of distinct elements in specified axis
-	*ex) df[column_name].nunique()
-
-.count()
-	* counts amount of entries in a table
-	* returns an integer value, count of whatever comes before
-
-.value_counts()
-	* returns a series with number of unique values
-	*ex) df.data_column.value_counts()
 
 .sum()
 	* counts integer values within an entry!
@@ -97,15 +130,12 @@ df.loc[n]
 .mean()
 	* returns average 
 
-.to_datetime()
-	* converts str to datetime object
-	ex) df.DATE = pd.to_datetime(df.DATE)
-
 .agg()
 	*aggregates using one or more operations over the specified axis
 	*takes dictionary as argument
 	*ex) parts_per_set = sets.groupby('year').agg({'num_parts': pd.Series.mean})
 	*ex)themes_by_year = sets.groupby('year').agg({'theme_id': pd.Series.nunique})
+
 
 .resample()
 	* resamples time-series data
@@ -113,13 +143,7 @@ df.loc[n]
 		—> this would take ‘last’ value in month
 		—> .mean() would take average over the month
 
-.pivot()
-	* returns reshaped DataFrame organized by given index / column values
-	# ex) test_df = pd.DataFrame({'Age': ['Young', 'Young', 'Young', 'Young', 'Old', 'Old', 'Old', 'Old],
-					'Actor': ['Jack', 'Arnold', 'Keanu', 'Sylvester', 'Jack', 'Arnold', 'Keanu', 'Sylvester'],
-					'Power': [100, 80, 25, 50, 99, 75, 5, 30]})
-	     pivoted_df = test_df.pivot(index='Age', columns='Actor', values='Power')
-
 ****TO FORMAT NUMBERS IN READABLE FORMAT****
 		
 		pd.options.display.float_format = '{:,.2f}'.format
+
