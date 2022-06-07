@@ -65,6 +65,52 @@ ex) bubble chart with linear regression model:
   
   	plt.show()
 
+ex) scatter chart with line chart superimposed, second y-axis!
+	* line chart shows a preconfigured rolling average!
+
+#create scatter plot with rolling average superimposed over it
+plt.figure(figsize=(16,8), dpi=200)
+
+plt.title('Number of Nobel Prizes Awarded per Year', fontsize=18)
+
+plt.yticks(fontsize=14)
+
+#👇 create x-axis that only shows every 5 years!
+plt.xticks(ticks=np.arange(1900, 2021, step=5),
+           fontsize=14,
+           rotation=45)
+
+ax1 = plt.gca() #get current axis
+ax2 = ax1.twinx() #creates second y-axis
+ax1.set_xlim(1900, 2020)
+#invert y-axis!
+ax2.invert_yaxis()
+
+#scatter plot
+ax1.scatter(x=yearly_total.index,
+            y=yearly_total.values,
+            c='dodgerblue',
+            alpha=0.7,#alpha=how opaque or transparent the dots will be; scale 0-1
+            s=100)
+
+
+#line chart, superimposed with moving_average instead of actual totals
+ax1.plot(yearly_total.index,
+         moving_average.values,
+         c='crimson',
+         linewidth=3)
+
+#add prize share to second axis
+ax2.plot(av_share.index,
+         fiveyr_av.values,
+         c='green',
+         linewidth=3)
+
+plt.show()
+
+
+
+
 
 * formatting:
 
