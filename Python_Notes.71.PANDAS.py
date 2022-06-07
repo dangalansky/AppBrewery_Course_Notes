@@ -143,6 +143,9 @@ df.fillna()
 		—> this would take ‘last’ value in month
 		—> .mean() would take average over the month
 
+
+.pivot()
+￼
 ****TO FORMAT NUMBERS IN READABLE FORMAT****
 		
 		pd.options.display.float_format = '{:,.2f}'.format
