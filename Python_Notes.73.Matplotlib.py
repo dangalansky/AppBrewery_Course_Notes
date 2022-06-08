@@ -26,6 +26,51 @@ plt.plot(x2, y2)
 ex) df.rolling(window=6).mean()
 	
 
+*Line Chart w/ 2 axes and monthly dashes on x-axis
+
+ex)
+
+import matplotlib.dates as mdates
+years = mdates.YearLocator()
+months = mdates.MonthLocator()
+years_fmt = mdates.DateFormatter("Y")
+
+plt.figure(figsize=(16, 8), dpi=200)
+plt.title("Total Number of Monthly Births and Deaths in 1840's Vienna", fontsize=18)
+plt.yticks(fontsize=14)
+plt.xticks(fontsize=14, rotation=45)
+
+ax1 = plt.gca()
+#Second Y-Axis
+ax2 = ax1.twinx()
+
+ax1.set_ylabel('Births', color='blue', fontsize=18)
+ax2.set_ylabel('Deaths', color='red', fontsize=18)
+
+#X-Axis Label Formatting
+ax1.set_xlim(df_monthly.date.min(),df_monthly.date.max())
+ax1.xaxis.set_major_locator(years)
+ax1.xaxis.set_major_formatter(years_fmt)
+ax1.xaxis.set_minor_locator(months)
+
+#Add Grid
+ax1.grid(color='grey', ls='--')
+
+ax1.plot(df_monthly.date,
+         df_monthly.births,
+         linewidth=3,
+         c='blue')
+
+ax2.plot(df_monthly.date,
+         df_monthly.deaths,
+         linewidth=2,
+         ls='--',
+         c='red')
+
+plt.show()
+
+
+
 *Bubble Charts(Seaborn!)
 -form of scatterplot
 import seaborn as sns
@@ -107,10 +152,6 @@ ax2.plot(av_share.index,
          linewidth=3)
 
 plt.show()
-
-
-
-
 
 * formatting:
 
