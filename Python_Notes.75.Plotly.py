@@ -42,8 +42,15 @@ burst.update_layout(xaxis_title='Number of Prizes',
 
 burst.show()
 
+*box plot
+ex)
+box = px.box(df_monthly,
+             x='washing_hands',
+             y='pct_deaths',
+             color='washing_hands',
+             title='How Have the Stats Have Changed with Handwashing?')
 
+box.update_layout(xaxis_title='Washing Hands?',
+                  yaxis_title='Percentage of Monthly Deaths')
 
-
-
-
+box.show()
