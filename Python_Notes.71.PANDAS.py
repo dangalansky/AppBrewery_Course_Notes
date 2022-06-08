@@ -27,7 +27,6 @@ df.head(n)
 df.tail(n)
 	* shows bottom “n” rows of data, default is 5
 
-
 df.describe()
 	*returns count, mean, min, max and other stats on every column
 
@@ -40,6 +39,10 @@ df.isna()
 df.isna().values.any()
 	* checks entirety of file for NaN values
 	* returns False if None
+
+.info()
+	*concise summary of DataFrame
+	*inclues index dtypes and columns as well as existence of NaN values!
 
 .nunique()
 	* counts number of distinct elements in specified axis
@@ -143,10 +146,6 @@ df.fillna()
 		—> this would take ‘last’ value in month
 		—> .mean() would take average over the month
 
-
-.pivot()
-￼
 ****TO FORMAT NUMBERS IN READABLE FORMAT****
 		
 		pd.options.display.float_format = '{:,.2f}'.format
-
